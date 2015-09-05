@@ -48,10 +48,12 @@ function C4Spawner:EntityDespawn(args)
 
 	for k, c4 in pairs(C4Manager.C4) do
 		local parent = c4:GetParent()
+		local owner = c4:GetOwner()
+		local playerData = self.playerData[owner:GetId()]
 
 		if parent and parent.__type == entity.__type and parent == entity then
 			c4:Remove()
-			self.GetId[c4:GetOwner():GetId()] = self.GetId[c4:GetOwner():GetId()] - 1
+			playerData.count = playerData.count - 1
 		end
 	end
 end
