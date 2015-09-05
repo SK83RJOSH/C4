@@ -96,7 +96,7 @@ function C4Controller:PreTick()
 		args.angle = Angle.FromVectors(Vector3.Up, raycast.normal)
 		args.values = {}
 
-		if entity and not string.find(entity.__type, "Client") then
+		if entity and table.find({"LocalPlayer", "Player", "Vehicle", "StaticObject"}, entity.__type) then
 			args.position = entity:GetPosition()
 			args.values.parent = entity
 
